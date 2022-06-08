@@ -1,23 +1,23 @@
 
 ## my Blog
 
-This project is the implemention of Class base views and function base views
+This project is the implemention of function base views
 
 
 ## Features
 
-Function base views and Class base views for 
+Function base views for 
 CRUD operations
 
 
 
 ## Installation
 
-Install my cms project in pycharm
+Install my my_blog project in pycharm
 
 ```
-mkdir cms
-cd cms
+mkdir my_blog
+cd my_blog
 python manage.py runserver
 ```
     
