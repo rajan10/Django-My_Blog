@@ -9,12 +9,16 @@ class PostForm(forms.ModelForm):
 
 
 
-class CommentForm(forms.Form):
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields=['content']
 
-    # model view  content only
-    commentor=forms.CharField(required=True)
-    post=forms.CharField(required=True)
-    content=forms.CharField(required=True)
-
+# class CommentForm(forms.Form):
+#
+#     # model view  content only
+#     commentor=forms.CharField(required=True)
+#     post=forms.CharField(required=True)
+#     content=forms.CharField(required=True)
 
 
