@@ -3,9 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# .env file for django environment variable
-.env
-
 # .pyc extensions
 *.pyc
 
@@ -142,6 +139,9 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# db 
+db.sqlite3
 
 # Pyre type checker
 .pyre/
