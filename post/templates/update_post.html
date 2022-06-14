@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Post</title>
-</head>
-<body>
+{% extends "base.html" %}
+  {% block title %} <title>Update Post</title>   {% endblock title %}
+
+{%  block content %}
 
 <form method="POST">
     {% csrf_token %}
@@ -16,5 +13,4 @@
     <input type="submit" value="Update Post">
 </form>
 
-</body>
-</html>
+{% endblock content %}

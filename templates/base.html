@@ -1,0 +1,26 @@
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {% endblock title %}
+</head>
+<body>
+{% include "header.html"  %}
+
+
+    {% block content %}
+
+
+    {% endblock content %}
+
+
+    {% block footer %}
+{% include "footer.html" %}
+    {% endblock footer %}
+</body>
+</html>
+
+

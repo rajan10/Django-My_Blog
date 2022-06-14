@@ -1,54 +1,44 @@
-<!--{% extends "base.html" %}-->
+{% extends "base.html" %}
 
-
-
-
-<!--    {% block content %}-->
-<html>
-<head>
-    <title> Detail Page </title>
-</head>
-
-<body>
+{% block title %} <title> Detail Page </title>   {% endblock title%}
 <h2> Welcome to My Blog: Detail Page View </h2>
-<table border="2">
+
+{% block content %}
+    <table border="2">
     <thead>
 
         <th> Title </th>
         <th> Image </th>
         <th> Content</th>
-
-
     </thead>
     <tbody>
         <tr><td> {{ post.title }} </td>
-
-             <td> {{ post.content }} </td>
+            <td>  </td>
+             <td> {{ post.content | safe }} </td>
 
         </tr>
     </tbody>
-
 </table>
 <hr>
+{% if post.image %}
 <img src="{{ post.image.url }}" alt="image placeholder">
 <hr>
 
-
+{% else %}
+<h2> No image</h2>
+{% endif %}
 <br>
 <br>
 <br>
-
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
    {% csrf_token %}
+
     {{ form.as_p }}
 
     <input type="submit" value="Post Comment">
 </form>
-
 {% if not post.posts.all %}
-
 {% else %}
-
    {% for comment in post.posts.all %}
         <strong>
             {{ comment.commentor }} ---- {{ comment.content}}
@@ -59,11 +49,9 @@
         </strong>
    {% endfor %}
 {% endif %}
-</body>
-
-</html>
 
 
 
 
-<!--    {% endblock %}-->
+
+    {% endblock content %}

@@ -1,18 +1,18 @@
+{% extends "base.html" %}
 
-<html>
 
-<head>
-
+{% block title %}
     <title> Create post </title>
-</head>
+{% endblock title %}
 
-<body>
-    <h1>Create Post</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
+{% block content %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+
             {% csrf_token %}
+              {{ form.media }}
             {{ form.as_p }}
             <input type="submit" value="Create Post">
         </form>
 
-</body>
-</html>
+{% endblock content %}

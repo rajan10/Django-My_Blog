@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
+{% block title %} <title>My Blog Project </title>{% endblock title %}
 
 
 
-    {% block content %}
-
-        <body>
+{% block content %}
     <table border="1" >
     <thead>
     <th> Author </th>
@@ -14,19 +13,22 @@
     <th> Created Date </th>
      <th> Detail </th>
     <th> Delete </th>
+    <th> Update </th>
     </thead>
     <tbody>
     {% for post in posts %}
     <tr>
         <td> {{ post.author }} </td>
         <td> {{ post.title }} </td>
-         <td> {{ post.content }} </td>
+         <td> {{ post.content | safe }} </td>
          <td> {{ post.created_date }} </td>
         <td> <a href ="{% url 'detail_post' post.pk %}"> DETAIL </a> </td>
         <td> <a href ="{% url 'delete_post' post.pk %}"> DELETE </a> </td>
+        <td> <a href ="{% url 'update_post' post.pk %}"> UPDATE </a> </td>
+
     </tr>
     {% endfor %}
     </tbody>
 </table>
-        </body>
-    {% endblock %}
+
+    {% endblock content %}
