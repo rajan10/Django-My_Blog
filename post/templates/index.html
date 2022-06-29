@@ -9,6 +9,7 @@
     <thead>
     <th> Author </th>
     <th> Title </th>
+    <th> Image </th>
     <th> Content </th>
     <th> Created Date </th>
      <th> Detail </th>
@@ -16,19 +17,29 @@
     <th> Update </th>
     </thead>
     <tbody>
-    {% for post in posts %}
+    {% for post in object_list %}
     <tr>
         <td> {{ post.author }} </td>
         <td> {{ post.title }} </td>
+        <td> {{ post.image }} </td>
          <td> {{ post.content | safe }} </td>
          <td> {{ post.created_date }} </td>
         <td> <a href ="{% url 'detail_post' post.pk %}"> DETAIL </a> </td>
         <td> <a href ="{% url 'delete_post' post.pk %}"> DELETE </a> </td>
         <td> <a href ="{% url 'update_post' post.pk %}"> UPDATE </a> </td>
-
     </tr>
     {% endfor %}
     </tbody>
 </table>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+
 
     {% endblock content %}

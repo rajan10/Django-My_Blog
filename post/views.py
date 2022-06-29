@@ -3,26 +3,29 @@ from .forms import PostForm, CommentForm
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.paginator import Paginator
+from django.core.mail import send_mail
+
 
 def index(request):
     context={}
-    # if request.user:
-    #     # print("logged in user")
-    #     context['user']=request.user
-    #     return render(request, template_name='index.html', context=context)
-    # else:
-    #     print("no  user ")
-    #     return render(request, template_name='index.html',context=context)
-    posts=Post.objects.all()
-    context['posts']=posts
-    return render(request, template_name="index.html", context=context)
+    object_list=Post.objects.all()
+    # show 5 objects  in one page
+    pagin=Paginator(object_list,10)
+    # GET variables and they usually appear in the address bar, e.g http: // 127.0.0.1: 8000 /?page = 2
+    # .get() is a python method that is normally used to return the value of items with a specific key from a dictionary.If nothing is found None is returned.
+    page_number=request.GET.get('page')
+    page_obj=pagin.get_page(page_number)
+    context['page_obj']=page_obj
+    # only sending the context of object that is
+    context['object_list']=page_obj.object_list
+    return render(request, template_name="index.html",  context=context)
 
 # def header(request):
 #     context={}
 #     posts=Post.objects.all()
 #     context['posts']=posts
 #     return render(request, template_name="header.html", context=context)
-
 
 @login_required(login_url='/login')
 def create_post(request):
@@ -133,4 +136,12 @@ def delete_post(request, id):
     post.delete()
     return redirect('/')
 
+def sending_mail(request):
+    subject='About vacation-this is subject.'
+    message='Here is the message.'
+    sender_email='rajangauchan10@gmail.com'
+    receiver_email=['lxmnmrzn@gmail.com']
+    fail_silently=False
 
+    send_mail(subject,message, sender_email,receiver_email,fail_silently)
+    return HttpResponse("Message is sent!")
